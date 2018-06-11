@@ -54,5 +54,5 @@ fabric.properties
 #other IntelliJ
 project/
 target/scala-2.12/resolution-cache/
-
+target/streams/
 
