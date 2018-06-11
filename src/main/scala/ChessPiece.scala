@@ -1,0 +1,1 @@
+case class ChessPiece(side:Int, kind:String)
