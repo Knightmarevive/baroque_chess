@@ -10,7 +10,9 @@ class CheckBoard (val fields: Vector[ChessPiece]) {
   val middleRow :String = "-+-+-+-+-+-+-+-+-+-"
 
   def aPiece (fieldID: Int) :String = { "|" + fields(fieldID).ChessToString}
-
+  def aRow   (rowID:   Int) :String = {columnMark(rowID) +
+    ( for( zCol <- 0 to 7) yield aPiece(rowID*8+zCol) ) +
+    "|" + columnMark(rowID) }
 
   def printme: Unit = {
     println(edgeRow)
