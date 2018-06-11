@@ -13,17 +13,17 @@ class CheckBoard (val fields: Vector[ChessPiece]) {
   def twoRows   (rowID:   Int) :String = {
     middleRow +
     columnMark(rowID) +
-    ( for( zCol <- 0 to 7) yield aPiece(rowID*8+zCol) ) +
-    "|" + columnMark(rowID) }
+    ( for( zCol <- 0 to 7) yield aPiece(rowID*8+zCol) ).mkString("") +
+    "|" + columnMark(rowID) +"\n"}
 
   def printme: Unit = {
     print(edgeRow +
-    ( for (zRow <- 0 to 7) yield twoRows(zRow) )+
+    ( for (zRow <- 0 to 7) yield twoRows(zRow) ).mkString("")+
     middleRow+
     edgeRow)
   }
 }
 
 object CheckBoard {
-
+  def createEmpty:CheckBoard = new CheckBoard(Vector.fill(64){ChessPiece(0," ")})
 }

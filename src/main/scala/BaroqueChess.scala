@@ -7,6 +7,8 @@ object BaroqueChess {
     //p1.printme
     //p2.printme
     //p3.printme
+    val chk:CheckBoard = CheckBoard.createEmpty
+    chk.printme
     println("")
   }
 }
