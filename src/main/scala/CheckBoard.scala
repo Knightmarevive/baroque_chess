@@ -6,19 +6,21 @@ class CheckBoard (val fields: Vector[ChessPiece]) {
   val rowMark: Vector[String] = Vector.empty[String] :+
     "H" :+ "G" :+ "F" :+ "E" :+ "D" :+ "C" :+ "B" :+ "A"
   */
-  val edgeRow   :String = " |A|B|C|D|E|F|G|H| "
-  val middleRow :String = "-+-+-+-+-+-+-+-+-+-"
+  val edgeRow   :String = " |A|B|C|D|E|F|G|H| \n"
+  val middleRow :String = "-+-+-+-+-+-+-+-+-+-\n"
 
-  def aPiece (fieldID: Int) :String = { "|" + fields(fieldID).ChessToString}
-  def aRow   (rowID:   Int) :String = {columnMark(rowID) +
+  def aPiece    (fieldID: Int) :String = { "|" + fields(fieldID).ChessToString}
+  def twoRows   (rowID:   Int) :String = {
+    middleRow +
+    columnMark(rowID) +
     ( for( zCol <- 0 to 7) yield aPiece(rowID*8+zCol) ) +
     "|" + columnMark(rowID) }
 
   def printme: Unit = {
-    println(edgeRow)
-
-    println(middleRow)
-    println(edgeRow)
+    print(edgeRow +
+    ( for (zRow <- 0 to 7) yield twoRows(zRow) )+
+    middleRow+
+    edgeRow)
   }
 }
 
