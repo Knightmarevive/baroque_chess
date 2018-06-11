@@ -50,3 +50,9 @@ fabric.properties
 
 # Editor-based Rest Client
 .idea/httpRequests
+
+#other IntelliJ
+project/
+target/scala-2.12/resolution-cache/
+
+
