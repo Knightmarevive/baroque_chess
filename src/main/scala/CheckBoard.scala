@@ -1,8 +1,12 @@
 class CheckBoard (val fields: Vector[ChessPiece]) {
   val lineBreaker: String = "-+-+-+-+-+-+-+-+-"
   val columnMark: Vector[String] = Vector.empty[String] :+
-    " " :+ "1" :+ "2" :+ "3" :+ "4" :+ "5" :+ "6" :+ "7" :+ "8" :+ " "
+    " " :+ "8" :+ "7" :+ "6" :+ "5" :+ "4" :+ "3" :+ "2" :+ "1" :+ " "
+  /*
   val rowMark: Vector[String] = Vector.empty[String] :+
     " " :+ "H" :+ "G" :+ "F" :+ "E" :+ "D" :+ "C" :+ "B" :+ "A" :+ " "
-
+  */
+  val edgeRow   :String = " |A|B|C|D|E|F|G|H| "
+  val middleRow :String = "-+-+-+-+-+-+-+-+-+-"
+  
 }
