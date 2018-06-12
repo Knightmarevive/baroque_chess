@@ -1,5 +1,8 @@
 case class TextToMove(_from: Compass, _to: Compass) {
-
+  def areFieldsValid: Boolean = {
+    _from.NS>=0 && _from.WE>=0 &&
+      _to.NS>=0 && _to.WE>=0
+  }
 }
 
 object TextToMove {
