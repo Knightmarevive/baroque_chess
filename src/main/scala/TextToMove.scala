@@ -7,14 +7,10 @@ object TextToMove {
   val numbers: String = "87654321"
   def create(str: String): TextToMove ={
     TextToMove(
-      Compass( letters.find(
-          str.charAt(0) == _ ),
-        numbers.find(
-          str.charAt(1)== _)),
-      Compass( letters.find(
-          str.charAt(2) == _),
-        numbers.find(
-          str.charAt(3)== _))
-    )
+      Compass( ((letters.indexOf(str.charAt(0).toString()) )):Int,
+        ((numbers.indexOf(str.indexOf(1).toString()))):Int ),
+      Compass( ((letters.indexOf(str.charAt(2).toString()))):Int,
+        ((numbers.indexOf(str.charAt(3).toString()) )) :Int
+      ))
   }
 }
