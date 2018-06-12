@@ -1,0 +1,7 @@
+class doMove {
+
+}
+
+object doMove {
+
+}
