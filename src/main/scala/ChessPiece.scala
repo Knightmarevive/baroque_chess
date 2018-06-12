@@ -15,4 +15,5 @@ object ChessPiece {
   val Dragon      :String = "D"
   val Imitator    :String = "I"
   val Empty       :String = " "
+
 }

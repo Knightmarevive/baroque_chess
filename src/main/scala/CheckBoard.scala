@@ -34,4 +34,7 @@ object CheckBoard {
     ChessPiece(2,"D") :+ ChessPiece(2,"L") :+ ChessPiece(2,"I") :+ ChessPiece(2,"W") :+
     ChessPiece(2,"K") :+ ChessPiece(2,"I") :+ ChessPiece(2,"L") :+ ChessPiece(2,"C") ) )
 
+  def fieldsInLine(begin :Int, end :Int) :Boolean = {
+    begin%8==end%8 || begin/8==end/8
+  }
 }
