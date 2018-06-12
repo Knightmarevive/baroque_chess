@@ -7,7 +7,7 @@ object Pincer extends PieceMove {
         ) return false
     val cmp = Compass.direction(placeFrom,placeTo)
 
-    for(i <- Range(placeFrom,cmp+placeTo,cmp.toInt))
+    for(i <- Range(cmp+placeFrom,cmp+placeTo,cmp.toInt))
       if(chk.fields(i).side != 0)
         return false
 
