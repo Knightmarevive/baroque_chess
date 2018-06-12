@@ -1,6 +1,7 @@
 
 case class Compass(WE :Int, NS :Int ){
-
+  def +(that: Int) : Int = that + this.WE + 8* this.NS
+  def toInt:Int = this.WE + 8* this.NS
 }
 
 object Compass {
