@@ -6,7 +6,7 @@ case class TextToMove(_from: Compass, _to: Compass) {
 }
 
 object TextToMove {
-  val letters: String = "HGFEDCBA"
+  val letters: String = "ABCDEFGH"
   val numbers: String = "87654321"
   def create(str: String): TextToMove ={
     TextToMove(
