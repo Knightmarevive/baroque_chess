@@ -4,6 +4,9 @@ case class ChessPiece(side:Int, kind:String){
   def ChessToString:String = { s"$RESET"+s"$BOLD"+(
     if(side==1) s"$GREEN_B"+s"$YELLOW" else (if (side==2) s"$RED_B" + s"$BLUE" else s"$BLACK_B"+ s"$BLACK")
   )+kind+s"$RESET"}
+  def SameSide(_side: Int):Boolean = (_side == side)
+  def OpposeSide(_side: Int):Boolean = (_side != side && _side != 0 && side != 0)
+  def isEmpty: Boolean  = (side==0)
 }
 
 object ChessPiece {
