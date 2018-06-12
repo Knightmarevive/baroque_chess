@@ -17,8 +17,9 @@ object TextToMove {
       ))
   }
   def ask: TextToMove ={
-    print("\n enter your move")
-    val str = scala.io.StdIn.readLine()
+    print(scala.Console.RESET + "\n enter your move ")
+    val str: String = scala.io.StdIn.readLine()
+    if (str.size < 4) return ask
     val ret = create(str)
     if (ret.areFieldsValid) ret else ask
   }
