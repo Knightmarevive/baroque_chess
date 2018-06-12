@@ -4,7 +4,7 @@ object Pincer extends PieceMove {
     if(!(isThere(chk, placeFrom, side)| CheckBoard.fieldsInLine(placeFrom,placeTo) ) ) return false
     val cmp = Compass.direction(placeFrom,placeTo)
 
-    for(i <- Range(placeFrom,placeTo,cmp.toInt))
+    for(i <- Range(placeFrom,cmp+placeTo,cmp.toInt))
       if(chk.fields(i).side != 0)
         return false
 
