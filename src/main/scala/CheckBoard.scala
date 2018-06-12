@@ -22,6 +22,14 @@ class CheckBoard (val fields: Vector[ChessPiece]) {
     middleRow+
     edgeRow)
   }
+
+  def +(effect: MoveEffect) :CheckBoard = {
+    new CheckBoard( for( i <- 0 to 63) yield
+      if (effect.place == i) effect.piece
+      else if(effect.remove.contains(i)) ChessPiece(0,ChessPiece.Empty)
+      else fields(i)
+    )
+  }
 }
 
 object CheckBoard {
