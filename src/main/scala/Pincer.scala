@@ -18,23 +18,27 @@ object Pincer extends PieceMove {
   override def fieldsToBurn(chk: CheckBoard, placeTo: Int, side: Int): List[Int] = {
     List[Int]() ++ {
       if ((Compass.fromInt(placeTo) + Compass(-2, 0)).isValidPosition &&
+        chk.fields((Compass.fromInt(placeTo) + Compass(-2, 0)).toInt).SameSide(side) &&
         chk.fields((Compass.fromInt(placeTo) + Compass(-1, 0)).toInt).OpposeSide(side)) {
         List[Int]((Compass.fromInt(placeTo) + Compass(-1, 0)).toInt)
       } else List[Int]()
     } ++ {
       if ((Compass.fromInt(placeTo) + Compass(2, 0)).isValidPosition &&
+        chk.fields((Compass.fromInt(placeTo) + Compass(2, 0)).toInt).SameSide(side) &&
         chk.fields((Compass.fromInt(placeTo) + Compass(1, 0)).toInt).OpposeSide(side)) {
         List[Int]((Compass.fromInt(placeTo) + Compass(1, 0)).toInt)
       } else List[Int]()
 
     }++ {
       if ((Compass.fromInt(placeTo) + Compass(0, -2)).isValidPosition &&
+        chk.fields((Compass.fromInt(placeTo) + Compass(0, -2)).toInt).SameSide(side) &&
         chk.fields((Compass.fromInt(placeTo) + Compass(0, -1)).toInt).OpposeSide(side)) {
         List[Int]((Compass.fromInt(placeTo) + Compass(0, -1)).toInt)
       } else List[Int]()
 
     }++ {
       if ((Compass.fromInt(placeTo) + Compass(0, 2)).isValidPosition &&
+        chk.fields((Compass.fromInt(placeTo) + Compass(0, 2)).toInt).SameSide(side) &&
         chk.fields((Compass.fromInt(placeTo) + Compass(0, 1)).toInt).OpposeSide(side)) {
         List[Int]((Compass.fromInt(placeTo) + Compass(0, 1)).toInt)
       } else List[Int]()
