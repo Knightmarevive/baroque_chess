@@ -7,7 +7,7 @@ object doMove {
     if( (!chk.fields(_from).SameSide(_side ) ) || chk.fields(_to).SameSide(_side)) None else
       {
         val currentPiece = chk.fields(_from).kind
-        println(" trying to move ("+currentPiece+")")
+        //println(" trying to move ("+currentPiece+")")
         currentPiece match {
           case ChessPiece.Pincer => {
             if (Pincer.fieldAvailible(chk,_from,_to,_side))

@@ -23,7 +23,9 @@ object TextToMove {
     val str: String = scala.io.StdIn.readLine()
     if (str.size != 4) return ask
     val ret = create(str)
-    if (ret.areFieldsValid) ret else
+    if (ret.areFieldsValid) {
+      println("\n trying to "+str)
+      ret } else
     { println("\n " ++ str ++ " (" ++ ret.toString ++ ") is not valid move statement ")
       ask }
   }
