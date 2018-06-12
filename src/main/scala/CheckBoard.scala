@@ -1,4 +1,4 @@
-class CheckBoard (val fields: Vector[ChessPiece]) {
+class CheckBoard (val fields: scala.collection.immutable.IndexedSeq[ChessPiece]) {
   val lineBreaker: String = "-+-+-+-+-+-+-+-+-"
   val columnMark: Vector[String] = Vector.empty[String] :+
     "8" :+ "7" :+ "6" :+ "5" :+ "4" :+ "3" :+ "2" :+ "1"
@@ -25,9 +25,9 @@ class CheckBoard (val fields: Vector[ChessPiece]) {
 
   def +(effect: MoveEffect) :CheckBoard = {
     new CheckBoard( for( i <- 0 to 63) yield
-      if (effect.place == i) effect.piece
-      else if(effect.remove.contains(i)) ChessPiece(0,ChessPiece.Empty)
-      else fields(i)
+      if (effect.place == i) effect.piece else
+      if(effect.remove.contains(i)) ChessPiece(0,ChessPiece.Empty) else
+        fields(i)
     )
   }
 }
