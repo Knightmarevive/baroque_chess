@@ -17,7 +17,7 @@ class CheckBoard (val fields: scala.collection.immutable.IndexedSeq[ChessPiece])
     "|" + columnMark(rowID) +"\n"}
 
   def printme: Unit = {
-    print(edgeRow +
+    print( "\n" + edgeRow +
     ( for (zRow <- 0 to 7) yield twoRows(zRow) ).mkString("")+
     middleRow+
     edgeRow)
