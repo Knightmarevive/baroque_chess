@@ -16,4 +16,10 @@ object TextToMove {
         numbers.indexOf(str.charAt(3)) :Int
       ))
   }
+  def ask: TextToMove ={
+    print("\n enter your move")
+    val str = scala.io.StdIn.readLine()
+    val ret = create(str)
+    if (ret.areFieldsValid) ret else ask
+  }
 }

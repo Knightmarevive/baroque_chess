@@ -15,4 +15,6 @@ object Compass {
     Compass(0,0)
 
   }
+
+  def fromInt(pos: Int):Compass = Compass (pos%8,pos/8)
 }
