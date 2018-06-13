@@ -44,6 +44,21 @@ object doMove {
               )))
             else None
           }
+          case ChessPiece.LongLeaper=>  {
+            if (LongLeaper.fieldAvailible(chk,_from,_to,_side))
+              Some(chk + (MoveEffect.moveWithoutKill(chk,_from,_to)+LongLeaper.fieldsToBurn(
+                chk,_from,_to, _side
+              )))
+            else None
+          }
+          case ChessPiece.Imitator=>  {
+            if (Imitator.fieldAvailible(chk,_from,_to,_side))
+              Some(chk + (MoveEffect.moveWithoutKill(chk,_from,_to)+Imitator.fieldsToBurn(
+                chk,_from,_to, _side
+              )))
+            else None
+          }
+
           case _ => None
 
         }
