@@ -37,6 +37,13 @@ object doMove {
               )))
             else None
           }
+          case ChessPiece.Coordinator=>  {
+            if (Coordinator.fieldAvailible(chk,_from,_to,_side))
+              Some(chk + (MoveEffect.moveWithoutKill(chk,_from,_to)+Coordinator.fieldsToBurn(
+                chk,_from,_to, _side
+              )))
+            else None
+          }
           case _ => None
 
         }

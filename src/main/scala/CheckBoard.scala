@@ -35,6 +35,7 @@ class CheckBoard (val fields: scala.collection.immutable.IndexedSeq[ChessPiece])
     for (i <- 0 to 63){
       if (fields(i).kind == ChessPiece.King &&  fields(i).SameSide(side)) return i
     }
+    return -1
   }
 }
 
