@@ -54,4 +54,9 @@ object CheckBoard {
   def fieldsOnStar(begin :Int, end :Int) :Boolean = {
     fieldsInLine(begin,end) || fieldsOnDiagonal(begin,end)
   }
+
+  def fieldsNear(begin :Int, end :Int) :Boolean = {
+    val shift = (Compass.fromInt(end) - Compass.fromInt(begin))
+    shift != Compass(0,0) && shift.NS>= -1 && shift.NS<= 1 && shift.WE>= -1 && shift.WE<=1
+  }
 }
