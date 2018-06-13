@@ -6,4 +6,5 @@ trait PieceMove {
   }
   def fieldAvailible(chk: CheckBoard, placeFrom: Int, placeTo: Int, side: Int) : Boolean
   def fieldsToBurn  (chk: CheckBoard, placeFrom: Int, placeTo: Int, side: Int) : List[Int]
+  def ownValue: Long
 }

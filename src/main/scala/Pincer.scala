@@ -1,5 +1,6 @@
 object Pincer extends PieceMove {
   override def whichPiece: String = ChessPiece.Pincer
+  override def ownValue: Long = 512
 
   override def fieldAvailible(chk: CheckBoard, placeFrom: Int, placeTo: Int, side: Int): Boolean = {
     //println(" trying to move Pincer")

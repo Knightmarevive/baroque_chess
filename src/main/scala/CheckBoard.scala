@@ -54,6 +54,10 @@ class CheckBoard (val fields: scala.collection.immutable.IndexedSeq[ChessPiece])
     }
     false
   }
+
+  def punctation(side: Int):Long ={
+    (for (i <- 0 to 63) yield fields(i).value(side)).sum
+  }
 }
 
 object CheckBoard {
