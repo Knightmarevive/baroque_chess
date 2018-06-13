@@ -17,7 +17,7 @@ object doMove {
         //println(" trying to move ("+currentPiece+")")
         if(currentPiece != ChessPiece.King && King.fieldIsInCheck(
           (chk+MoveEffect.moveWithoutKill(chk,kingPos,kingPos)),
-          kingPos,kingPos, _side )) return None
+          kingPos,kingPos, _side ))  None else
         currentPiece match {
           case ChessPiece.Pincer => {
             if (Pincer.fieldAvailible(chk, _from, _to, _side))
