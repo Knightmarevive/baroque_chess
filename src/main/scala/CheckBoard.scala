@@ -50,4 +50,8 @@ object CheckBoard {
     val shift = (Compass.fromInt(end) - Compass.fromInt(begin))
     scala.math.abs(shift.WE) == scala.math.abs(shift.NS)
   }
+
+  def fieldsOnStar(begin :Int, end :Int) :Boolean = {
+    fieldsInLine(begin,end) || fieldsOnDiagonal(begin,end)
+  }
 }
