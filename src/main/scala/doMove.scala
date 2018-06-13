@@ -30,6 +30,13 @@ object doMove {
               )))
             else None
           }
+          case ChessPiece.Dragon=>  {
+            if (Dragon.fieldAvailible(chk,_from,_to,_side))
+              Some(chk + (MoveEffect.moveWithoutKill(chk,_from,_to)+Dragon.fieldsToBurn(
+                chk,_from,_to, _side
+              )))
+            else None
+          }
           case _ => None
 
         }
