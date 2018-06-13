@@ -6,6 +6,7 @@ object Coordinator extends PieceMove {
     if (CheckBoard.fieldsOnStar(placeFrom,placeTo)){
 
       val cmp = Compass.direction(placeFrom, placeTo)
+      if(cmp == Compass(0,0)) return false
 
       for (i <- Range(cmp + placeFrom, cmp + placeTo, cmp.toInt))
         if (chk.fields(i).side != 0)

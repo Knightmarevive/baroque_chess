@@ -9,6 +9,8 @@ object Imitator extends PieceMove {
       chk.fields(placeTo).OpposeSide(side)) true else
     if(chk.fields(placeTo).isEmpty){
       val cmp = Compass.direction(placeFrom,placeTo)
+      if(cmp == Compass(0,0)) return false
+
 
       for (i <- Range(cmp + placeFrom, placeTo, cmp.toInt))
         if(chk.fields(i).SameSide(side) || chk.fields(i).kind != ChessPiece.LongLeaper ||

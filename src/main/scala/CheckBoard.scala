@@ -77,7 +77,8 @@ object CheckBoard {
 
   def fieldsOnDiagonal(begin :Int, end :Int) :Boolean = {
     val shift = (Compass.fromInt(end) - Compass.fromInt(begin))
-    scala.math.abs(shift.WE) == scala.math.abs(shift.NS)
+    scala.math.abs(shift.WE) == scala.math.abs(shift.NS) &&
+    shift != Compass(0,0)
   }
 
   def fieldsOnStar(begin :Int, end :Int) :Boolean = {
