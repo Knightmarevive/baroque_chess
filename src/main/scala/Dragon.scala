@@ -19,5 +19,3 @@ object Dragon extends PieceMove {
     List[Int]()
   }
 }
-
-// TODO: Dragonify/Fear
