@@ -16,6 +16,13 @@ object doMove {
               )))
             else None
           }
+          case ChessPiece.King =>  {
+            if (King.fieldAvailible(chk,_from,_to,_side))
+              Some(chk + (MoveEffect.moveWithoutKill(chk,_from,_to)+King.fieldsToBurn(
+                chk,_from,_to, _side
+              )))
+            else None
+          }
 
           case _ => None
 
