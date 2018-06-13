@@ -30,7 +30,10 @@ object Imitator extends PieceMove {
     } else List[Int]()) ++
       (for(ccc <- Coordinator.fieldsToBurn(chk,placeFrom,placeTo,side);
     if (chk.fields(ccc).kind == ChessPiece.Coordinator)
-    ) yield ccc)
+    ) yield ccc) ++
+      (for(www <- Withdrawer.fieldsToBurn(chk,placeFrom,placeTo,side);
+           if (chk.fields(www).kind == ChessPiece.Withdrawer)
+      ) yield www)
   //} else List[Int]())
 
 }
