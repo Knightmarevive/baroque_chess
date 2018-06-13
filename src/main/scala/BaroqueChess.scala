@@ -11,7 +11,7 @@ object BaroqueChess {
     while(true) {
       chk.printme
       val _move = TextToMove.ask
-      val _ret = doMove.act(chk,_move._from.toInt,_move._to.toInt, side )
+      val _ret = doMove.act(chk,_move._from.toInt,_move._to.toInt, side, false )
       if (_ret.isDefined){
         println(" proper move ")
         if (side != 2) side =2 else side = 1

@@ -3,7 +3,7 @@ class doMove {
 }
 
 object doMove {
-  def act(chk: CheckBoard, _from: Int, _to: Int, _side: Int): Option[CheckBoard] = {
+  def act(chk: CheckBoard, _from: Int, _to: Int, _side: Int, _theoretical: Boolean): Option[CheckBoard] = {
     if(chk.fields(_from).SameSide(_side ) ) {
       if (chk.fields(_to).SameSide(_side) ) {
         if(chk.isInFear(_from)){
@@ -16,7 +16,7 @@ object doMove {
         val kingPos = chk.findKing(_side)
         //println(" trying to move ("+currentPiece+")")
 
-        if(currentPiece != ChessPiece.King && King.fieldIsInCheck(
+        if( (!_theoretical) && currentPiece != ChessPiece.King && King.fieldIsInCheck(
           chk , kingPos, kingPos, _side ))  None else
         currentPiece match {
           case ChessPiece.Pincer => {
