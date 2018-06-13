@@ -11,7 +11,7 @@ object doMove {
             for(i <- 0 to 63) yield if(i==_from) ChessPiece(0,ChessPiece.Empty) else chk.fields(i)
           ))
         } else None
-      } else {
+      } else if (!chk.isInFear(_from)) {
         val currentPiece = chk.fields(_from).kind
         //println(" trying to move ("+currentPiece+")")
         currentPiece match {
@@ -63,13 +63,13 @@ object doMove {
                 chk, _from, _to, _side
               )))
             else None
-          }
+          } //else None
 
           case _ => None
 
         }
-      }
-    } else None
+      } else None
+    }else None
 
-  }
+  } //else None
 }
