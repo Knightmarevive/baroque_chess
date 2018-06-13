@@ -32,6 +32,7 @@ class CheckBoard (val fields: scala.collection.immutable.IndexedSeq[ChessPiece])
   }
 
   def findKing(side :Int) :Int = {
+    if(side!=1 && side!=2) println(" King have to have a side ")
     for (i <- 0 to 63){
       if (fields(i).kind == ChessPiece.King &&  fields(i).SameSide(side)) return i
     }
