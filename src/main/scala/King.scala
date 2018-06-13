@@ -6,7 +6,7 @@ object King extends PieceMove {
   def fieldIsInCheck(chk: CheckBoard,placeFrom: Int, placeTo: Int,_side:Int): Boolean ={
     val chkOpp = chk + MoveEffect.moveWithoutKill(chk,placeFrom,placeTo)
     val tryOpp = checkMove(checkMove.Opponent(_side))
-    for (i <- tryOpp.allMoves(chkOpp)) if(i.findKing(_side)<0) return true
+    for (i <- tryOpp.allMoves(chkOpp)) if(i.findKing(_side)<0) return true // stack overflow ?
     false
   }
   override def fieldAvailible(chk: CheckBoard, placeFrom: Int, placeTo: Int, side: Int): Boolean = {
