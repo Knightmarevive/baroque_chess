@@ -7,7 +7,7 @@ object King extends PieceMove {
     val chkOpp = chk + MoveEffect.moveWithoutKill(chk,placeFrom,placeTo)
     val tryOpp = checkMove(checkMove.Opponent(_side))
     for (i <- tryOpp.allMoves(chkOpp)) if(i.findKing(_side)<0) {
-
+      i.printme // debug
       return true
     }
     false
