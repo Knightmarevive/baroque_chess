@@ -19,7 +19,7 @@ object doMove {
         if( (! _theoretical) && currentPiece != ChessPiece.King && King.fieldIsInCheck(
           chk , kingPos, kingPos, _side )) {
           // println(" This would be Ouch "); chk.printme ; println("")
-          println( " This would be ouch " + Compass.fromInt(_from) + Compass.fromInt(_to) )
+          // println( " This would be ouch " + Compass.fromInt(_from) + Compass.fromInt(_to) )
           None } else
         currentPiece match {
           case ChessPiece.Pincer => {
