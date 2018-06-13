@@ -9,6 +9,8 @@ case class checkMove(_side :Int) {
       ).flatten
 
     def switch: checkMove = if(_side==1) checkMove(2) else if (_side==2) checkMove(1) else checkMove(0)
+
+    def lost(from :CheckBoard) :Boolean = (allMoves(from)==List[CheckBoard]())
 }
 
 object checkMove {
