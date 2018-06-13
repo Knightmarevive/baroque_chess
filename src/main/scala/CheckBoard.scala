@@ -37,6 +37,23 @@ class CheckBoard (val fields: scala.collection.immutable.IndexedSeq[ChessPiece])
     }
     return -1
   }
+
+  def isInFear(field :Int) :Boolean = {
+    val side = fields(field).side
+    val dirs = List(Compass(-1,-1),Compass( 0,-1),Compass( 1,-1),
+                    Compass(-1, 0)               ,Compass( 1, 0),
+                    Compass(-1, 1),Compass( 0, 1),Compass( 1, 1))
+    for(dir <- dirs) {
+      if((dir + Compass.fromInt(field)).isValidPosition ) {
+        if ((fields(dir + field)).OpposeSide(side)){
+          if((fields(dir + field)).kind== ChessPiece.Dragon ||
+            ((fields(dir + field)).kind== ChessPiece.Imitator &&
+              fields(field).kind == ChessPiece.Dragon)) return true
+        }
+      }
+    }
+    false
+  }
 }
 
 object CheckBoard {
