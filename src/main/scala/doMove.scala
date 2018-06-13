@@ -13,7 +13,11 @@ object doMove {
         } else None
       } else if (!chk.isInFear(_from)) {
         val currentPiece = chk.fields(_from).kind
+        val kingPos = chk.findKing(_side)
         //println(" trying to move ("+currentPiece+")")
+        if(currentPiece != ChessPiece.King && King.fieldIsInCheck(
+          (chk+MoveEffect.moveWithoutKill(chk,kingPos,kingPos)),
+          kingPos,kingPos, _side )) return None
         currentPiece match {
           case ChessPiece.Pincer => {
             if (Pincer.fieldAvailible(chk, _from, _to, _side))
