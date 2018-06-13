@@ -27,8 +27,12 @@ object Imitator extends PieceMove {
       for (ppp <- Pincer.fieldsToBurn(chk,placeFrom,placeTo,side);
            if (chk.fields(ppp).kind == ChessPiece.Pincer)
       ) yield ppp
-    } else List[Int]())
+    } else List[Int]()) ++
+      (for(ccc <- Coordinator.fieldsToBurn(chk,placeFrom,placeTo,side);
+    if (chk.fields(ccc).kind == ChessPiece.Coordinator)
+    ) yield ccc)
+  //} else List[Int]())
 
-  }
+}
 
 }
