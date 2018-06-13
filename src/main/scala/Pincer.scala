@@ -15,7 +15,7 @@ object Pincer extends PieceMove {
     true
   }
 
-  override def fieldsToBurn(chk: CheckBoard, placeTo: Int, side: Int): List[Int] = {
+  override def fieldsToBurn(chk: CheckBoard, placeFtom: Int, placeTo: Int, side: Int): List[Int] = {
     List[Int]() ++ {
       if ((Compass.fromInt(placeTo) + Compass(-2, 0)).isValidPosition &&
         chk.fields((Compass.fromInt(placeTo) + Compass(-2, 0)).toInt).SameSide(side) &&

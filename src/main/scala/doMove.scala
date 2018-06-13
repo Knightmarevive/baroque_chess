@@ -11,7 +11,9 @@ object doMove {
         currentPiece match {
           case ChessPiece.Pincer => {
             if (Pincer.fieldAvailible(chk,_from,_to,_side))
-              Some(chk + MoveEffect.moveWithoutKill(chk,_from,_to))
+              Some(chk + (MoveEffect.moveWithoutKill(chk,_from,_to)+Pincer.fieldsToBurn(
+                chk,_from,_to, _side
+              )))
             else None
           }
 
