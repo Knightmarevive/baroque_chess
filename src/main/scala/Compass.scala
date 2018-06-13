@@ -14,9 +14,15 @@ object Compass {
       if (placeFrom / 8 == placeTo / 8 && placeFrom > placeTo) Compass(-1, 0) else
         if(placeFrom%8 == placeTo%8  && placeFrom < placeTo) Compass(0,1) else
           if(placeFrom%8 == placeTo%8  && placeFrom > placeTo) Compass(0,-1) else
+            if(CheckBoard.fieldsOnDiagonal(placeFrom,placeTo)){
+      val tmp = Compass.fromInt(placeFrom) - Compass.fromInt(placeTo)
+        if (tmp.WE<0 && tmp.NS<0) Compass(-1,-1) else
+        if (tmp.WE>0 && tmp.NS<0) Compass( 1,-1) else
+        if (tmp.WE<0 && tmp.NS>0) Compass(-1, 1) else
+        if (tmp.WE>0 && tmp.NS>0) Compass( 1, 1) else
+          Compass(0,0)
 
-
-    Compass(0,0)
+    } else Compass(0,0)
 
   }
 
