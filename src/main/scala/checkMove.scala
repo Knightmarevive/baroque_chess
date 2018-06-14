@@ -17,7 +17,7 @@ case class checkMove(_side :Int) {
 
     def switch: checkMove = if(_side==1) checkMove(2) else if (_side==2) checkMove(1) else checkMove(0)
 
-    def lost(from :CheckBoard) :Boolean = (for (move <- (allMoves(from))) yield
+    def lost(from :CheckBoard) :Boolean = (for (move <- (allMoves(from).toParArray)) yield
       (if (switch.DethroneMoves(move).size>0) 0 else 1)).sum == 0
 
     def NegaScout(from :CheckBoard, alpha: Long, beta: Long, depth: Int): Long = {

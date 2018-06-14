@@ -1,3 +1,5 @@
+import scala.Console.{GREEN_B,RED_B,BLACK,BLACK_B,RESET,BOLD,YELLOW,BLUE}
+
 case class TextToMove(_from: Compass, _to: Compass) {
   def areFieldsValid: Boolean = {
     _from.NS>=0 && _from.WE>=0 &&
@@ -29,4 +31,7 @@ object TextToMove {
     { println("\n " ++ str ++ " (" ++ ret.toString ++ ") is not valid move statement ")
       ask }
   }
+
+  def sideToString(_side: Int): String = if(_side==1) s"$GREEN_B$YELLOW Green $RESET" else
+    if(_side==2) s"$RED_B$BLUE Red $RESET" else " Nobody "
 }

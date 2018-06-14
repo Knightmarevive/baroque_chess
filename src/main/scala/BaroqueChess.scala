@@ -1,3 +1,5 @@
+
+
 object BaroqueChess {
   def main(args: Array[String]) {
     //val chk:CheckBoard = CheckBoard.createEmpty
@@ -15,9 +17,14 @@ object BaroqueChess {
 
     var chk:CheckBoard = CheckBoard.createStart
     var side: Int = 2
+    var resolved: Boolean = false
+
     if(sides==2)
-    while(true) {
+    while(!resolved) {
       chk.printme
+      if(checkMove(side).lost(chk)){
+        println (TextToMove.sideToString(side)+" Lost")
+      } else println (TextToMove.sideToString(side)+" have turn.")
       val _move = TextToMove.ask
       val _ret = doMove.act(chk,_move._from.toInt,_move._to.toInt, side, false )
       if (_ret.isDefined){
@@ -26,8 +33,11 @@ object BaroqueChess {
         chk=_ret.get
       }
     } else if (sides==1)
-      while (true){
+      while (!resolved){
         chk.printme
+        if(checkMove(side).lost(chk)){
+          println (TextToMove.sideToString(side)+" Lost")
+        } else println (TextToMove.sideToString(side)+" have turn.")
         if (side == 2)  {
           val _move = TextToMove.ask
           val _ret = doMove.act(chk,_move._from.toInt,_move._to.toInt, side, false )
@@ -41,8 +51,11 @@ object BaroqueChess {
             side = 2
           }
       } else
-      while (true){
+      while (!resolved){
         chk.printme
+        if(checkMove(side).lost(chk)){
+          println (TextToMove.sideToString(side)+" Lost")
+        } else println (TextToMove.sideToString(side)+" have turn.")
         if (side == 2){
           chk = checkMove(2).ComputerMove(chk,depth)
           side= 1
