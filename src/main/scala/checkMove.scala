@@ -8,10 +8,13 @@ case class checkMove(_side :Int) {
           CheckBoard.fieldsOnStar(i,j))) && (doMove.act(from,i,j,_side, true).isDefined )) yield doMove.act(from,i,j,_side, true).get
       ).flatten
 
+    def DethroneMoves (from :CheckBoard): List[CheckBoard] = for (move <- allMoves(from) ;
+                                          if(move.findKing(checkMove.Opponent(_side))<0) ) yield move
+
     def switch: checkMove = if(_side==1) checkMove(2) else if (_side==2) checkMove(1) else checkMove(0)
 
     def lost(from :CheckBoard) :Boolean = (for (move1 <- (allMoves(from))) yield
-      for (move2 <- switch.allMoves(move1)) yield
+      for (move2 <- switch.DethroneMoves(move1)) yield
       (if (move2.findKing(_side)<0) 1 else 0 )).flatten.sum > 0
 }
 
