@@ -19,12 +19,11 @@ object BaroqueChess {
     var side: Int = 2
     var resolved: Boolean = false
 
+    println (TextToMove.sideToString(side)+" have turn.")
+
     if(sides==2)
     while(!resolved) {
       chk.printme
-      if(checkMove(side).lost(chk)){
-        println (TextToMove.sideToString(side)+" Lost")
-      } else println (TextToMove.sideToString(side)+" have turn.")
       val _move = TextToMove.ask
       val _ret = doMove.act(chk,_move._from.toInt,_move._to.toInt, side, false )
       if (_ret.isDefined){
@@ -32,12 +31,16 @@ object BaroqueChess {
         if (side != 2) side =2 else side = 1
         chk=_ret.get
       }
+
+      if(checkMove(side).lost(chk)){
+        chk.printme
+        resolved=true
+        println (TextToMove.sideToString(side)+" Lost")
+      } else println (TextToMove.sideToString(side)+" have turn.")
+
     } else if (sides==1)
       while (!resolved){
         chk.printme
-        if(checkMove(side).lost(chk)){
-          println (TextToMove.sideToString(side)+" Lost")
-        } else println (TextToMove.sideToString(side)+" have turn.")
         if (side == 2)  {
           val _move = TextToMove.ask
           val _ret = doMove.act(chk,_move._from.toInt,_move._to.toInt, side, false )
@@ -50,12 +53,16 @@ object BaroqueChess {
             chk = checkMove(1).ComputerMove(chk,depth)
             side = 2
           }
+
+        if(checkMove(side).lost(chk)){
+          chk.printme
+          resolved=true
+          println (TextToMove.sideToString(side)+" Lost")
+        } else println (TextToMove.sideToString(side)+" have turn.")
+
       } else
       while (!resolved){
         chk.printme
-        if(checkMove(side).lost(chk)){
-          println (TextToMove.sideToString(side)+" Lost")
-        } else println (TextToMove.sideToString(side)+" have turn.")
         if (side == 2){
           chk = checkMove(2).ComputerMove(chk,depth)
           side= 1
@@ -63,6 +70,12 @@ object BaroqueChess {
           chk = checkMove(1).ComputerMove(chk,depth )
           side = 2
         }
+
+        if(checkMove(side).lost(chk)){
+          chk.printme
+          resolved=true
+          println (TextToMove.sideToString(side)+" Lost")
+        } else println (TextToMove.sideToString(side)+" have turn.")
       }
 
     println("")
