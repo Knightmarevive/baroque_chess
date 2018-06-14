@@ -1,3 +1,7 @@
+case class ValuedCheckboard(_value: Long, chk: CheckBoard) extends Ordered[ValuedCheckboard] {
+  def compare(that :ValuedCheckboard): Int = this._value compare that._value
+}
+
 case class checkMove(_side :Int) {
     def allMoves(from :CheckBoard): List[CheckBoard] = if(_side==0) List[CheckBoard]() else (
       for(i <- (0 to 63).toList; if (from.fields(i).SameSide(_side))) yield
@@ -16,11 +20,14 @@ case class checkMove(_side :Int) {
     def lost(from :CheckBoard) :Boolean = (for (move <- (allMoves(from))) yield
       (if (switch.DethroneMoves(move).size>0) 0 else 1)).sum == 0
 
-    def NegaScout(from :CheckBoard, alpha: Long, beta: Long, depth: Int): CheckBoard = {
-      from // todo
+    def NegaScout(from :CheckBoard, alpha: Long, beta: Long, depth: Int): Long = {
+      0 //todo
     }
 
-    def ComputerMove(from :CheckBoard, depth :Int) : CheckBoard = NegaScout(from,(-9L)*King.ownValue,9L*King.ownValue,depth)
+    def ComputerMove(from :CheckBoard, depth :Int) : CheckBoard = {
+      (for (chk <- allMoves(from)) yield
+        ValuedCheckboard( NegaScout(chk,(-9L)*King.ownValue,9L*King.ownValue,depth),chk ) ).max.chk
+    }
 }
 
 object checkMove {
