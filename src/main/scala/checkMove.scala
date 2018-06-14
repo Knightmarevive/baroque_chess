@@ -50,7 +50,7 @@ case class checkMove(_side :Int) {
 
     def ComputerMove(from :CheckBoard, depth :Int) : CheckBoard = {
       (for (chk <- allMoves(from).toParArray) yield
-        ValuedCheckboard( NegaScout(chk,from,(-9L)*King.ownValue,9L*King.ownValue,depth),chk ) ).min.chk
+        ValuedCheckboard( NegaScout(chk,from,(-9L)*King.ownValue,9L*King.ownValue,depth),chk ) ).max.chk
     }
 }
 
