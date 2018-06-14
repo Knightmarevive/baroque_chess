@@ -4,6 +4,7 @@ class doMove {
 
 object doMove {
   def act(chk: CheckBoard, _from: Int, _to: Int, _side: Int, _theoretical: Boolean): Option[CheckBoard] = {
+    if(_from<0 || _from>63 || _to<0 || _to>63 ) None else
     if(chk.fields(_from).SameSide(_side ) ) {
       if (chk.fields(_to).SameSide(_side) ) {
         if(chk.isInFear(_from)){
