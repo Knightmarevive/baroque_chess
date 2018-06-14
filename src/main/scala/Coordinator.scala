@@ -17,8 +17,10 @@ object Coordinator extends PieceMove {
   }
 
   override def fieldsToBurn(chk: CheckBoard, placeFrom: Int, placeTo: Int, side: Int): List[Int] = {
-    val KingPos = Compass.fromInt(chk.findKing(side))
+    val _King_Pos_ = chk.findKing(side)
+    val KingPos = Compass.fromInt(_King_Pos_)
     val CoordinatorPos = Compass.fromInt(placeTo)
+    if (_King_Pos_ < 0) List[Int]() else
     List[Int]() ++ {
       val zfield = Compass(KingPos.WE,CoordinatorPos.NS).toInt
       if(chk.fields(zfield).OpposeSide(side)) List[Int](zfield) else List[Int]()
