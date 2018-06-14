@@ -21,7 +21,23 @@ case class checkMove(_side :Int) {
       (if (switch.DethroneMoves(move).size>0) 0 else 1)).sum == 0
 
     def NegaScout(from :CheckBoard, alpha: Long, beta: Long, depth: Int): Long = {
-      0 //todo
+      if(depth==0) from.punctation(_side) else {
+          var a=alpha; var b=beta; var i=1;
+          for(pos <- allMoves(from)){
+
+            val t = -NegaScout(pos,-b,-a,depth-1)
+            if( (t>a) && (t<beta) && (i>1) && (depth>1))
+              a= -NegaScout(pos,-beta,-t,depth-1)
+            a=List[Long](a,t).max
+            if(a>=beta)
+              return a
+
+            b=a+1
+            i+=1
+          }
+          return a
+      }
+      //todo make it more functional
     }
 
     def ComputerMove(from :CheckBoard, depth :Int) : CheckBoard = {
