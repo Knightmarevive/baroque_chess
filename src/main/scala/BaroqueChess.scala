@@ -5,7 +5,7 @@ object BaroqueChess {
     //val chk:CheckBoard = CheckBoard.createEmpty
     val sides:    Int = if (args.length < 1) 2     else args(0).toInt
     var depth:    Int = if (args.length < 2) 3     else args(1).toInt
-    val every:    Int = if (args.length < 3) 44    else args(2).toInt
+    val every:    Int = if (args.length < 3) 144   else args(2).toInt
     val maxdepth: Int = if (args.length < 4) 7     else args(3).toInt
 
     if (sides < 0 || sides > 2) {
