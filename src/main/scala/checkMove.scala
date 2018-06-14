@@ -25,9 +25,9 @@ case class checkMove(_side :Int) {
           var a=alpha; var b=beta; var i=1;
           for(pos <- allMoves(from)){
 
-            val t = -checkMove(checkMove.Opponent(_side)).NegaScout(pos,old,-b,-a,depth-1)
+            val t = -/*checkMove(checkMove.Opponent(_side)).*/NegaScout(pos,old,-b,-a,depth-1)
             if( (t>a) && (t<beta) && (i>1) && (depth>1))
-              a= -checkMove(checkMove.Opponent(_side)).NegaScout(pos,old,-beta,-t,depth-1)
+              a= -/*checkMove(checkMove.Opponent(_side)).*/NegaScout(pos,old,-beta,-t,depth-1)
             a=List[Long](a,t).max
             if(a>=beta)
               return a
@@ -42,7 +42,7 @@ case class checkMove(_side :Int) {
 
     def ComputerMove(from :CheckBoard, depth :Int) : CheckBoard = {
       (for (chk <- allMoves(from).toParArray) yield
-        ValuedCheckboard( NegaScout(chk,from,(-9L)*King.ownValue,9L*King.ownValue,depth),chk ) ).max.chk
+        ValuedCheckboard( NegaScout(chk,from,(-144L)*King.ownValue,144L*King.ownValue,depth),chk ) ).max.chk
     }
 }
 
