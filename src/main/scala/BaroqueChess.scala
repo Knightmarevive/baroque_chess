@@ -25,16 +25,15 @@ object BaroqueChess {
         if (side == 2)  {
           val _move = TextToMove.ask
           val _ret = doMove.act(chk,_move._from.toInt,_move._to.toInt, side, false )
-          if (_ret.isDefined){
+          if (_ret.isDefined) {
             println(" proper move ")
             side = 1
-            chk=_ret.get
+            chk = _ret.get
+          }
           } else {
             chk = checkMove(1).ComputerMove(chk,depth)
             side = 2
           }
-
-        }
       } else
       while (true){
         chk.printme
@@ -42,7 +41,7 @@ object BaroqueChess {
           chk = checkMove(2).ComputerMove(chk,depth)
           side= 1
         } else {
-          chk = checkMove(1).ComputerMove(chk,depth)
+          chk = checkMove(1).ComputerMove(chk,depth )
           side = 2
         }
       }
