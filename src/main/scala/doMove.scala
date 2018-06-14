@@ -7,7 +7,7 @@ object doMove {
     if(_from<0 || _from>63 || _to<0 || _to>63 ) None else
     if(chk.fields(_from).SameSide(_side ) ) {
       if (chk.fields(_to).SameSide(_side) ) {
-        if(chk.isInFear(_from)){
+        if(chk.isInFear(_from) && chk.fields(_from).kind != ChessPiece.King){
           Some (new CheckBoard(
             for(i <- 0 to 63) yield if(i==_from) ChessPiece(0,ChessPiece.Empty) else chk.fields(i)
           ))
