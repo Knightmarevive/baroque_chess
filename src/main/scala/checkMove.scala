@@ -16,6 +16,11 @@ case class checkMove(_side :Int) {
     def lost(from :CheckBoard) :Boolean = (for (move <- (allMoves(from))) yield
       (if (switch.DethroneMoves(move).size>0) 0 else 1)).sum == 0
 
+    def NegaScout(from :CheckBoard, alpha: Long, beta: Long, depth: Int): CheckBoard = {
+      from // todo
+    }
+
+    def ComputerMove(from :CheckBoard, depth :Int) : CheckBoard = NegaScout(from,(-9L)*King.ownValue,9L*King.ownValue,depth)
 }
 
 object checkMove {
