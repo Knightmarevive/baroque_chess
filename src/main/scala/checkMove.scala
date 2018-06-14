@@ -21,13 +21,13 @@ case class checkMove(_side :Int) {
       (if (switch.DethroneMoves(move).size>0) 0 else 1)).sum == 0
 
     def NegaScout(from :CheckBoard, old :CheckBoard, alpha: Long, beta: Long, depth: Int): Long = {
-      if(depth==0) from.punctation(_side) - old.punctation(_side) else {
+      if(depth==0)  from.punctation(_side) - old.punctation(_side)  else {
           var a=alpha; var b=beta; var i=1;
           for(pos <- allMoves(from)){
 
-            val t = checkMove(checkMove.Opponent(_side)).NegaScout(pos,from,b,a,depth-1)
+            val t = checkMove(checkMove.Opponent(_side)).NegaScout(pos,old,-b,-a,depth-1)
             if( (t>a) && (t<beta) && (i>1) && (depth>1))
-              a= checkMove(checkMove.Opponent(_side)).NegaScout(pos,from,beta,t,depth-1)
+              a= checkMove(checkMove.Opponent(_side)).NegaScout(pos,old,-beta,-t,depth-1)
             a=List[Long](a,t).max
             if(a>=beta)
               return a
