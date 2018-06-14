@@ -13,7 +13,8 @@ object Imitator extends PieceMove {
 
 
       for (i <- Range(cmp + placeFrom, placeTo, cmp.toInt))
-        if(chk.fields(i).SameSide(side) || chk.fields(i).kind != ChessPiece.LongLeaper ||
+        if(chk.fields(i).SameSide(side) ||
+          (chk.fields(i).kind != ChessPiece.LongLeaper && chk.fields(i).kind != ChessPiece.Empty ) ||
           (chk.fields(i).OpposeSide(side) && !chk.fields(cmp+i).isEmpty)
         ) return false
 
