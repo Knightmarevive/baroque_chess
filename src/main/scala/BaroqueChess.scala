@@ -48,6 +48,7 @@ object BaroqueChess {
       }
 
       turn+=1
+
       if(checkMove(side).lost(chk)){
         chk.printme
         resolved=true
