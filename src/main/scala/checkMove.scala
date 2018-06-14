@@ -3,6 +3,7 @@ case class ValuedCheckboard(_value: Long, chk: CheckBoard) extends Ordered[Value
 }
 
 case class checkMove(_side :Int) {
+  /*
     def allMoves(from :CheckBoard): List[CheckBoard] = if(_side==0) List[CheckBoard]() else (
       for(i <- (0 to 63).toList; if (from.fields(i).SameSide(_side))) yield
       if(from.isInFear(i)) List[CheckBoard](doMove.act(from,i,i,_side,true).get) else
@@ -11,8 +12,13 @@ case class checkMove(_side :Int) {
         (from.fields(i).kind != ChessPiece.King && from.fields(i).kind != ChessPiece.Pincer &&
           CheckBoard.fieldsOnStar(i,j))) && (doMove.act(from,i,j,_side, true).isDefined )) yield doMove.act(from,i,j,_side, true).get
       ).flatten
+  */
 
-    def DethroneMoves (from :CheckBoard): List[CheckBoard] = for (move <- allMoves(from) ;
+  def allMoves(from :CheckBoard): List[CheckBoard] = if(_side==0) List[CheckBoard]() else for (move <- (for(i <- (0 to 63).toList; if (from.fields(i).SameSide(_side))) yield
+    if(from.isInFear(i)) List[Option[CheckBoard]] (doMove.act(from,i,i,_side,true)) else for(j <- (0 to 63).toList) yield
+        doMove.act(from,i,j,_side, true)).flatten.filter(_.isDefined)) yield move.get
+
+  def DethroneMoves (from :CheckBoard): List[CheckBoard] = for (move <- allMoves(from) ;
                                           if(move.findKing(checkMove.Opponent(_side))<0) ) yield move
 
     def switch: checkMove = if(_side==1) checkMove(2) else if (_side==2) checkMove(1) else checkMove(0)
