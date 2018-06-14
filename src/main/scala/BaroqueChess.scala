@@ -1,12 +1,18 @@
 object BaroqueChess {
   def main(args: Array[String]) {
     //val chk:CheckBoard = CheckBoard.createEmpty
-    val sides: Int = if (args.length != 1) 2 else args(0).toInt
-    val depth: Int = 7
+    val sides: Int = if (args.length != 1 && args.length !=2) 2 else args(0).toInt
+    val depth: Int = if (args.length !=2) 7 else args(1).toInt
 
     if (sides < 0 || sides > 2) {
       println(" There can be only 0-2 players ")
       return}
+
+    if (depth < 1 || depth > 255) {
+      println(" There can be only 1-255 depth ")
+      return}
+
+
     var chk:CheckBoard = CheckBoard.createStart
     var side: Int = 2
     if(sides==2)
