@@ -3,8 +3,10 @@
 object BaroqueChess {
   def main(args: Array[String]) {
     //val chk:CheckBoard = CheckBoard.createEmpty
-    val sides: Int = if (args.length != 1 && args.length !=2) 2 else args(0).toInt
-    val depth: Int = if (args.length != 2) 4 else args(1).toInt
+    val sides:    Int = if (args.length < 1) 2     else args(0).toInt
+    var depth:    Int = if (args.length < 2) 4     else args(1).toInt
+    val every:    Int = if (args.length < 3) 100   else args(2).toInt
+    val maxdepth: Int = if (args.length < 4) 7     else args(3).toInt
 
     if (sides < 0 || sides > 2) {
       println(" There can be only 0-2 players ")
@@ -14,9 +16,19 @@ object BaroqueChess {
       println(" There can be only 1-255 depth ")
       return}
 
+    if (every < 10 || every > 65535){
+      println(" There can be only 10-65535 progression ")
+      return
+    }
+
+    if (maxdepth < depth || maxdepth > 255) {
+      println(" There can be only depth-255 maxdepth ")
+      return}
+
 
     var chk:CheckBoard = CheckBoard.createStart
-    var side: Int = 2
+    var side: Int  = 2
+    var turn: Long = 1
     var resolved: Boolean = false
 
     //println (TextToMove.sideToString(side)+" have turn.")
@@ -25,6 +37,7 @@ object BaroqueChess {
     while(!resolved) {
       chk.printme
       print ("\n"+TextToMove.sideToString(side)+" have turn.")
+      if(turn%every==0 && depth<maxdepth) depth+=1
 
       val _move = TextToMove.ask
       val _ret = doMove.act(chk,_move._from.toInt,_move._to.toInt, side, false )
@@ -34,6 +47,7 @@ object BaroqueChess {
         chk=_ret.get
       }
 
+      turn+=1
       if(checkMove(side).lost(chk)){
         chk.printme
         resolved=true
@@ -44,6 +58,7 @@ object BaroqueChess {
       while (!resolved){
         chk.printme
         print ("\n"+TextToMove.sideToString(side)+" have turn.")
+        if(turn%every==0 && depth<maxdepth) depth+=1
 
         if (side == 2)  {
           val _move = TextToMove.ask
@@ -58,6 +73,7 @@ object BaroqueChess {
             side = 2
           }
 
+        turn+=1
         if(checkMove(side).lost(chk)){
           chk.printme
           resolved=true
@@ -68,6 +84,7 @@ object BaroqueChess {
       while (!resolved){
         chk.printme
         print ("\n"+TextToMove.sideToString(side)+" have turn.")
+        if(turn%every==0 && depth<maxdepth) depth+=1
 
         if (side == 2){
           chk = checkMove(2).ComputerMove(chk,depth)
@@ -77,6 +94,7 @@ object BaroqueChess {
           side = 2
         }
 
+        turn+=1
         if(checkMove(side).lost(chk)){
           chk.printme
           resolved=true
