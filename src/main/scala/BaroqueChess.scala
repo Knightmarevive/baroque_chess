@@ -19,11 +19,13 @@ object BaroqueChess {
     var side: Int = 2
     var resolved: Boolean = false
 
-    println (TextToMove.sideToString(side)+" have turn.")
+    //println (TextToMove.sideToString(side)+" have turn.")
 
     if(sides==2)
     while(!resolved) {
       chk.printme
+      print ("\n"+TextToMove.sideToString(side)+" have turn.")
+
       val _move = TextToMove.ask
       val _ret = doMove.act(chk,_move._from.toInt,_move._to.toInt, side, false )
       if (_ret.isDefined){
@@ -36,11 +38,13 @@ object BaroqueChess {
         chk.printme
         resolved=true
         println (TextToMove.sideToString(side)+" Lost")
-      } else println (TextToMove.sideToString(side)+" have turn.")
+      } // else println (TextToMove.sideToString(side)+" have turn.")
 
     } else if (sides==1)
       while (!resolved){
         chk.printme
+        print ("\n"+TextToMove.sideToString(side)+" have turn.")
+
         if (side == 2)  {
           val _move = TextToMove.ask
           val _ret = doMove.act(chk,_move._from.toInt,_move._to.toInt, side, false )
@@ -58,11 +62,13 @@ object BaroqueChess {
           chk.printme
           resolved=true
           println (TextToMove.sideToString(side)+" Lost")
-        } else println (TextToMove.sideToString(side)+" have turn.")
+        } // else println (TextToMove.sideToString(side)+" have turn.")
 
       } else
       while (!resolved){
         chk.printme
+        print ("\n"+TextToMove.sideToString(side)+" have turn.")
+
         if (side == 2){
           chk = checkMove(2).ComputerMove(chk,depth)
           side= 1
@@ -75,7 +81,7 @@ object BaroqueChess {
           chk.printme
           resolved=true
           println (TextToMove.sideToString(side)+" Lost")
-        } else println (TextToMove.sideToString(side)+" have turn.")
+        } // else println (TextToMove.sideToString(side)+" have turn.")
       }
 
     println("")
