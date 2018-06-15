@@ -49,8 +49,9 @@ case class checkMove(_side :Int) {
     }
 
     def ComputerMove(from :CheckBoard, depth :Int) : CheckBoard = {
+      val r = scala.util.Random
       (for (chk <- allMoves(from).toParArray) yield
-        ValuedCheckboard( NegaScout(chk,from,(-9L)*King.ownValue,9L*King.ownValue,depth),chk ) ).max.chk
+        ValuedCheckboard( NegaScout(chk,from,(-9L)*King.ownValue,9L*King.ownValue,depth) + r.nextInt(16),chk ) ).max.chk
     }
 }
 
