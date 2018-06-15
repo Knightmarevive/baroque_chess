@@ -32,7 +32,7 @@ case class checkMove(_side :Int) {
       if(depth==0)  from.punctation(_side) - old.punctation(_side)  else {
           var a=alpha; var b=beta;
           //var i=1;
-          for(pos <- checkMove(checkMove.Opponent(_side)).allMoves(from)){
+          for(pos <- checkMove(checkMove.Opponent(tmp_side)).allMoves(from)){
 
             val t = -NegaScout(pos,old, checkMove.Opponent(tmp_side), -b,-a,depth-1)
             if( (t>a) && (t<beta) /* && (i>1) && (depth>1) */ )
