@@ -28,15 +28,15 @@ case class checkMove(_side :Int) {
     def lost(from :CheckBoard) :Boolean = (for (move <- (allMoves(from).toParArray)) yield
       (if (switch.DethroneMoves(move).size>0) 0 else 1)).sum == 0
 
-    def NegaScout(from :CheckBoard, old :CheckBoard, tmp_side: Int , alpha: Long, beta: Long, depth: Int): Long = {
-      if(depth==0)  from.punctation(_side) - old.punctation(_side)  else {
+    def NegaScout(from :CheckBoard, /* old :CheckBoard, */ tmp_side: Int , alpha: Long, beta: Long, depth: Int): Long = {
+      if(depth==0)  from.punctation(_side) /* - old.punctation(_side) */  else {
           var a=alpha; var b=beta;
           //var i=1;
           for(pos <- checkMove(checkMove.Opponent(tmp_side)).allMoves(from)){
 
-            val t = -NegaScout(pos,old, checkMove.Opponent(tmp_side), -b,-a,depth-1)
+            val t = -NegaScout(pos, /* old, */ checkMove.Opponent(tmp_side), -b,-a,depth-1)
             if( (t>a) && (t<beta) /* && (i>1) && (depth>1) */ )
-              a= -NegaScout(pos,old, checkMove.Opponent(tmp_side), -beta,-t,depth-1)
+              a= -NegaScout(pos, /* old, */ checkMove.Opponent(tmp_side), -beta,-t,depth-1)
             a=List[Long](a,t).max
             if(a>=beta)
               return a
@@ -55,7 +55,7 @@ case class checkMove(_side :Int) {
         val k = chk.findKing(_side)
         (k>0 && !King.fieldIsInCheck(chk,k,k,_side))
       })) yield
-        ValuedCheckboard( NegaScout(chk,from, _side,(-9L)*King.ownValue,9L*King.ownValue,depth) + (r.nextInt(99).toLong),chk ) ).max.chk
+        ValuedCheckboard( NegaScout(chk, /* from,*/ _side,(-9L)*King.ownValue,9L*King.ownValue,depth) + (r.nextInt(99).toLong),chk ) ).max.chk
     }
 }
 
