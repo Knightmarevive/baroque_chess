@@ -5,7 +5,7 @@ class doMove {
 object doMove {
   def act(chk: CheckBoard, _from: Int, _to: Int, _side: Int, _theoretical: Boolean): Option[CheckBoard] = {
     val ret = tryAct(chk,_from,_to,_side,_theoretical)
-    if (_theoretical ) ret
+    if (_theoretical ) return ret
     if(!ret.isDefined) return None
     val kingPos = ret.get.findKing(_side)
     if( kingPos<0 || King.fieldIsInCheck(ret.get,_from,_to,_side) ) None else ret
