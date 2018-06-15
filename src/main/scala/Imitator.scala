@@ -1,7 +1,7 @@
 object Imitator extends PieceMove {
     override def whichPiece: String = ChessPiece.Imitator
 
-  override def ownValue: Long = 1111
+  override def ownValue: Long = 11111
 
   override def fieldAvailible(chk: CheckBoard, placeFrom: Int, placeTo: Int, side: Int): Boolean = {
     if(CheckBoard.fieldsNear(placeFrom,placeTo) &&

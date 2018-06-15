@@ -1,7 +1,7 @@
 object Dragon extends PieceMove {
 
   override def whichPiece: String = ChessPiece.Dragon
-  override def ownValue: Long = 1111
+  override def ownValue: Long = 11111
 
   override def fieldAvailible(chk: CheckBoard, placeFrom: Int, placeTo: Int, side: Int): Boolean = {
     if (CheckBoard.fieldsOnStar(placeFrom,placeTo)){

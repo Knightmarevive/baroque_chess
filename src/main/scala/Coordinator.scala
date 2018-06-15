@@ -1,6 +1,6 @@
 object Coordinator extends PieceMove {
   override def whichPiece: String = ChessPiece.Coordinator
-  override def ownValue: Long = 999
+  override def ownValue: Long = 9999
 
   override def fieldAvailible(chk: CheckBoard, placeFrom: Int, placeTo: Int, side: Int): Boolean = {
     if (CheckBoard.fieldsOnStar(placeFrom,placeTo)){
