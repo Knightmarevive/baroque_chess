@@ -35,7 +35,7 @@ case class checkMove(_side :Int) {
           for(pos <- allMoves(from)){
 
             val t = -/*checkMove(checkMove.Opponent(_side)).*/NegaScout(pos,old,-b,-a,depth-1)
-            if( (t>a) && (t<beta) /*&& (i>1)*/ && (depth>1))
+            if( (t>a) && (t<beta) /* && (i>1) && (depth>1) */ )
               a= -/*checkMove(checkMove.Opponent(_side)).*/NegaScout(pos,old,-beta,-t,depth-1)
             a=List[Long](a,t).max
             if(a>=beta)
