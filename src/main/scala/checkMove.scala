@@ -55,7 +55,7 @@ case class checkMove(_side :Int) {
         val k = chk.findKing(_side)
         (k>0 && !King.fieldIsInCheck(chk,k,k,_side))
       })) yield
-        ValuedCheckboard( NegaScout(chk, /* from,*/ _side,(-9L)*King.ownValue,9L*King.ownValue,depth) + (r.nextInt(99).toLong),chk ) ).max.chk
+        ValuedCheckboard( NegaScout(chk, /* from,*/ _side,(-9L)*King.ownValue,9L*King.ownValue,depth) + (r.nextInt(99).toLong),chk ) ).min.chk
     }
 }
 
