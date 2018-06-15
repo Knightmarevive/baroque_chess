@@ -17,13 +17,14 @@ object doMove {
         val kingPos = chk.findKing(_side)
         //println(" trying to move ("+currentPiece+")")
 
+        /*
         if(( (! _theoretical) && currentPiece != ChessPiece.King && King.fieldIsInCheck(
           chk , kingPos, kingPos, _side )) || ((! _theoretical) && currentPiece == ChessPiece.King &&
           King.fieldIsInCheck(chk, _from, _to, _side)
           ) ) {
           // println(" This would be Ouch "); chk.printme ; println("")
           // println( " This would be ouch " + Compass.fromInt(_from) + Compass.fromInt(_to) )
-          None } else if (_from==_to) None else
+          None } else if (_from==_to) None else */
         currentPiece match {
           case ChessPiece.Pincer => {
             if (Pincer.fieldAvailible(chk, _from, _to, _side))
