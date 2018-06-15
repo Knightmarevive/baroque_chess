@@ -4,6 +4,12 @@ class doMove {
 
 object doMove {
   def act(chk: CheckBoard, _from: Int, _to: Int, _side: Int, _theoretical: Boolean): Option[CheckBoard] = {
+    val ret = tryAct(chk,_from,_to,_side,_theoretical)
+    if(!ret.isDefined) return None
+    val kingPos = ret.get.findKing(_side)
+    if( kingPos<0 || King.fieldIsInCheck(ret.get,_from,_to,_side) ) None else ret
+  }
+  def tryAct(chk: CheckBoard, _from: Int, _to: Int, _side: Int, _theoretical: Boolean): Option[CheckBoard] = {
     if(_from<0 || _from>63 || _to<0 || _to>63 ) None else
     if(chk.fields(_from).SameSide(_side ) ) {
       if (chk.fields(_to).SameSide(_side) ) {
