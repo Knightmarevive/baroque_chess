@@ -1,3 +1,5 @@
+import scala.collection.parallel.CollectionConverters._
+
 class CheckBoard (val fields: scala.collection.immutable.IndexedSeq[ChessPiece]) {
   val lineBreaker: String = "-+-+-+-+-+-+-+-+-"
   val columnMark: Vector[String] = Vector.empty[String] :+

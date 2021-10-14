@@ -1,4 +1,9 @@
 import scala.Console.{GREEN_B,RED_B,BLACK,BLACK_B,RESET,BOLD,YELLOW,BLUE}
+import scala.io.StdIn.readLine
+// import cats.effect.IO
+// import cats.Eval
+// import cats.implicits._
+// import scala.concurrent.Future
 
 case class TextToMove(_from: Compass, _to: Compass) {
   def areFieldsValid: Boolean = {
@@ -22,7 +27,13 @@ object TextToMove {
   }
   def ask: TextToMove ={
     print(scala.Console.RESET + "\n enter your move ")
-    val str: String = scala.io.StdIn.readLine()
+    // val in: IO[String] = IO(readLine())
+	//val in = IO { readLine() }
+	// val in = Eval.always { readLine() }
+	// val str: String = in.value
+	// BufferedReader r1 = new BufferedReader(new InputStreamReader(System.in))
+	val str = readLine()
+	if (str == null) return ask
     if (str.size != 4) return ask
     val ret = create(str)
     if (ret.areFieldsValid) {

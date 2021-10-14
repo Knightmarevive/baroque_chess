@@ -1,3 +1,6 @@
+// import scala.collection.parallel.CollectionConverters._
+
+
 case class ValuedCheckboard(_value: Long, chk: CheckBoard) extends Ordered[ValuedCheckboard] {
   def compare(that :ValuedCheckboard): Int = this._value compare that._value
 }
@@ -25,7 +28,7 @@ case class checkMove(_side :Int) {
 
     def switch: checkMove = if(_side==1) checkMove(2) else if (_side==2) checkMove(1) else checkMove(0)
 
-    def lost(from :CheckBoard) :Boolean = (for (move <- (allMoves(from).toParArray)) yield
+    def lost(from :CheckBoard) :Boolean = (for (move <- (allMoves(from))) yield
       (if (switch.DethroneMoves(move).size>0) 0 else 1)).sum == 0
 
     def NegaScout(from :CheckBoard, /* old :CheckBoard, */ tmp_side: Int , alpha: Long, beta: Long, depth: Int): Long = {
@@ -51,7 +54,7 @@ case class checkMove(_side :Int) {
 
     def ComputerMove(from :CheckBoard, depth :Int) : CheckBoard = {
       val r = scala.util.Random
-      (for (chk <- allMoves(from).toParArray; if({
+      (for (chk <- allMoves(from); if({
         val k = chk.findKing(_side)
         (k>0 && !King.fieldIsInCheck(chk,k,k,_side))
       })) yield
