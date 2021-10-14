@@ -1,6 +1,6 @@
 object Withdrawer extends PieceMove {
   override def whichPiece: String = ChessPiece.Withdrawer
-  override def ownValue: Long = 888
+  override def ownValue: Long = 8888
 
   override def fieldAvailible(chk: CheckBoard, placeFrom: Int, placeTo: Int, side: Int): Boolean = {
     if (CheckBoard.fieldsOnStar(placeFrom,placeTo)){

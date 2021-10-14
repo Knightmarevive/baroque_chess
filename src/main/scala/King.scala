@@ -1,12 +1,12 @@
 object King extends PieceMove {
   override def whichPiece: String = ChessPiece.King
 
-  override def ownValue: Long = 99999
+  override def ownValue: Long = 9999999
 
   def fieldIsInCheck(chk: CheckBoard,placeFrom: Int, placeTo: Int,_side:Int): Boolean ={
-    val chkOpp = chk + MoveEffect.moveWithoutKill(chk,placeFrom,placeTo)
+    // val chkOpp = chk + MoveEffect.moveWithoutKill(chk,placeFrom,placeTo)
     val tryOpp = checkMove(checkMove.Opponent(_side))
-    for (i <- tryOpp.allMoves(chkOpp)) if(i.findKing(_side)<0) {
+    for (i <- tryOpp.allMoves(/*chkOpp*/ chk)) if(i.findKing(_side)<0) {
       //i.printme // debug
       return true
     }

@@ -1,0 +1,1 @@
+java -jar baroque_chess-assembly-0.1.jar 2

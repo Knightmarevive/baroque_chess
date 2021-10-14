@@ -1,7 +1,7 @@
 object LongLeaper extends PieceMove {
   override def whichPiece: String = ChessPiece.LongLeaper
 
-  override def ownValue: Long = 1111
+  override def ownValue: Long = 11111
   override def fieldAvailible(chk: CheckBoard, placeFrom: Int, placeTo: Int, side: Int): Boolean = {
     if(chk.fields(placeTo).isEmpty){
       val cmp = Compass.direction(placeFrom,placeTo)
