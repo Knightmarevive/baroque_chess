@@ -1,5 +1,5 @@
 // import scala.collection.parallel.CollectionConverters._
-
+import it.unimi.dsi.util.{XoRoShiRo128PlusPlusRandomGenerator => JFastRand}
 
 case class ValuedCheckboard(_value: Long, chk: CheckBoard) extends Ordered[ValuedCheckboard] {
   def compare(that :ValuedCheckboard): Int = this._value compare that._value
@@ -53,16 +53,18 @@ case class checkMove(_side :Int) {
     }
 
     def ComputerMove(from :CheckBoard, depth :Int) : CheckBoard = {
-      val r = scala.util.Random
+      // val r = scala.util.Random
+	  val JRnd = new JFastRand
       (for (chk <- allMoves(from); if({
         val k = chk.findKing(_side)
         (k>0 && !King.fieldIsInCheck(chk,k,k,_side))
       })) yield
-        ValuedCheckboard( NegaScout(chk, /* from,*/ _side,(-9L)*King.ownValue,9L*King.ownValue,depth) + (r.nextInt(99).toLong),chk ) ).min.chk
+        ValuedCheckboard( NegaScout(chk, /* from,*/ _side,(-9L)*King.ownValue,9L*King.ownValue,depth) + (JRnd.nextInt(99)),chk ) ).min.chk
     }
 }
 
 object checkMove {
+  //  var JRnd = new JFastRand
   val upper = checkMove(1)
   val lower = checkMove(2)
   def Opponent(player :Int) :Int = if (player==1) 2 else  if (player==2) 1 else 0
