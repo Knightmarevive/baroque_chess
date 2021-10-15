@@ -1,4 +1,5 @@
-// import scala.collection.parallel.CollectionConverters._
+import scala.collection.parallel.CollectionConverters._
+import scala.collection.parallel.immutable.ParVector
 import it.unimi.dsi.util.{XoRoShiRo128PlusPlusRandomGenerator => JFastRand}
 
 case class ValuedCheckboard(_value: Long, chk: CheckBoard) extends Ordered[ValuedCheckboard] {
@@ -18,12 +19,12 @@ case class checkMove(_side :Int) {
       ).flatten
   */
 
-  def allMoves(from :CheckBoard): List[CheckBoard] = if(_side==0) List[CheckBoard]() else for (_move <- (for(i <- (0 to 63).toList; if (from.fields(i).SameSide(_side))) yield
-    if(from.isInFear(i)) List[Option[CheckBoard]] (doMove.act(from,i,i,_side,true)) else for(j <- (0 to 63).toList; if(i!=j)) yield
+  def allMoves(from :CheckBoard): ParVector[CheckBoard] = if(_side==0) ParVector[CheckBoard]() else for (_move <- (for(i <- (0 to 63).toVector.par; if (from.fields(i).SameSide(_side))) yield
+    if(from.isInFear(i)) ParVector[Option[CheckBoard]] (doMove.act(from,i,i,_side,true)) else for(j <- (0 to 63).toList; if(i!=j)) yield
         doMove.act(from,i,j,_side, true)).flatten.filter(_.isDefined)) yield _move.get
 
 
-  def DethroneMoves (from :CheckBoard): List[CheckBoard] = for (move <- allMoves(from) ;
+  def DethroneMoves (from :CheckBoard): ParVector[CheckBoard] = for (move <- allMoves(from) ;
                                           if(move.findKing(checkMove.Opponent(_side))<0) ) yield move
 
     def switch: checkMove = if(_side==1) checkMove(2) else if (_side==2) checkMove(1) else checkMove(0)
