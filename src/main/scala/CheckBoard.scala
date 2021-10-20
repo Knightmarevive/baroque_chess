@@ -8,8 +8,8 @@ class CheckBoard (val fields: scala.collection.immutable.IndexedSeq[ChessPiece])
   val rowMark: Vector[String] = Vector.empty[String] :+
     "H" :+ "G" :+ "F" :+ "E" :+ "D" :+ "C" :+ "B" :+ "A"
   */
-  val edgeRow   :String = " |A|B|C|D|E|F|G|H| \n"
-  val middleRow :String = "-+-+-+-+-+-+-+-+-+-\n"
+  val edgeRow   :String = " | A | B | C | D | E | F | G | H | \n"
+  val middleRow :String = "-+---+---+---+---+---+---+---+---+-\n"
 
   def aPiece    (fieldID: Int) :String = { "|" + fields(fieldID).ChessToString}
   def twoRows   (rowID:   Int) :String = {

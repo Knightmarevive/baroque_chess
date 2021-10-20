@@ -1,10 +1,20 @@
 import scala.Console.{GREEN_B,RED_B,BLACK,BLACK_B,RESET,BOLD,YELLOW,BLUE}
 
 case class ChessPiece(side:Int, kind:String){
+  /*
   def ChessToString:String = { s"$RESET"+s"$BOLD"+(
     if(side==1) s"$GREEN_B"+s"$YELLOW" else (if (side==2) s"$RED_B" + s"$BLUE" else s"$BLACK_B"+ s"$BLACK")
   )+kind+s"$RESET"}
-  def SameSide(_side: Int):Boolean = {
+  */
+  
+  def ChessToString:String = { (
+    if(side==1) s"(" else (if (side==2) s"<" else s" ")
+  )+kind+(
+    if(side==1) s")" else (if (side==2) s">" else s" ")
+  )  }
+  
+
+ def SameSide(_side: Int):Boolean = {
     //println(" debug: SameSide "+side.toString+" "+_side.toString)
     (_side == side) }
   def OpposeSide(_side: Int):Boolean = (_side != side && _side != 0 && side != 0)
