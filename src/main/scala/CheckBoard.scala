@@ -3,13 +3,13 @@ import scala.collection.parallel.CollectionConverters._
 class CheckBoard (val fields: scala.collection.immutable.IndexedSeq[ChessPiece]) {
   val lineBreaker: String = "-+-+-+-+-+-+-+-+-"
   val columnMark: Vector[String] = Vector.empty[String] :+
-    "8" :+ "7" :+ "6" :+ "5" :+ "4" :+ "3" :+ "2" :+ "1"
+    " 8 " :+ " 7 " :+ " 6 " :+ " 5 " :+ " 4 " :+ " 3 " :+ " 2 " :+ " 1 "
   /*
   val rowMark: Vector[String] = Vector.empty[String] :+
     "H" :+ "G" :+ "F" :+ "E" :+ "D" :+ "C" :+ "B" :+ "A"
   */
-  val edgeRow   :String = " | A | B | C | D | E | F | G | H | \n"
-  val middleRow :String = "-+---+---+---+---+---+---+---+---+-\n"
+  val edgeRow   :String = "   | A | B | C | D | E | F | G | H |   \n"
+  val middleRow :String = "---+---+---+---+---+---+---+---+---+---\n"
 
   def aPiece    (fieldID: Int) :String = { "|" + fields(fieldID).ChessToString}
   def twoRows   (rowID:   Int) :String = {
