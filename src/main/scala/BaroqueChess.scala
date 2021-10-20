@@ -36,7 +36,7 @@ object BaroqueChess {
     if(sides==2)
     while(!resolved) {
       chk.printme
-      print ("\n"+TextToMove.sideToString(side)+" have turn.")
+      print ("\n"+TextToMove.sideToString(side)+"\t have turn.")
       if(turn%every==0 && depth<maxdepth) depth+=1
 
       val _move = TextToMove.ask
@@ -52,13 +52,13 @@ object BaroqueChess {
       if(checkMove(side).lost(chk)){
         chk.printme
         resolved=true
-        println (TextToMove.sideToString(side)+" Lost")
+        println (TextToMove.sideToString(side)+"\t Lost")
       } // else println (TextToMove.sideToString(side)+" have turn.")
 
     } else if (sides==1)
       while (!resolved){
         chk.printme
-        print ("\n"+TextToMove.sideToString(side)+" have turn.")
+        print ("\n"+TextToMove.sideToString(side)+"\t have turn.")
         if(turn%every==0 && depth<maxdepth) depth+=1
 
         if (side == 2)  {
@@ -78,13 +78,13 @@ object BaroqueChess {
         if(checkMove(side).lost(chk)){
           chk.printme
           resolved=true
-          println (TextToMove.sideToString(side)+" Lost")
+          println (TextToMove.sideToString(side)+"\t Lost")
         } // else println (TextToMove.sideToString(side)+" have turn.")
 
       } else
       while (!resolved){
         chk.printme
-        print ("\n"+TextToMove.sideToString(side)+" have turn.")
+        print ("\n"+TextToMove.sideToString(side)+"\t have turn.")
         if(turn%every==0 && depth<maxdepth) depth+=1
 
         if (side == 2){
@@ -99,7 +99,7 @@ object BaroqueChess {
         if(checkMove(side).lost(chk)){
           chk.printme
           resolved=true
-          println (TextToMove.sideToString(side)+" Lost")
+          println (TextToMove.sideToString(side)+"\t Lost")
         } // else println (TextToMove.sideToString(side)+" have turn.")
       }
 
